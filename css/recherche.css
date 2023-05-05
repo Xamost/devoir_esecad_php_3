@@ -1,0 +1,14 @@
+div.historique
+{
+    display:flex;
+    position:absolute;
+    left:50%;
+    top:70%;
+    transform: translate(-50%, -50%);
+}
+a.button
+{
+    border-radius: 40px;
+    margin:10px;
+
+}
