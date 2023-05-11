@@ -2,7 +2,7 @@
      position:absolute;
      top:5%;
      left:50%;
-     transform: translate(-50%);
+     transform: translate(-25%);
  }
 
  form
@@ -14,7 +14,7 @@
      align-items: center;
      position:absolute;
      top:50%;
-     transform: translateY(-50%);
+     transform: translate(5%, -50%);
      width:100%;
  }
  input
@@ -36,10 +36,67 @@
  {
      padding:20px;
      color:white;
+     border-radius: 40px;
+     margin:10px;
      background: #00C4EF;
  }
 
  #recherche_form
  {
      flex-direction: row;
+ }
+ div.historique
+ {
+     display:flex;
+     position:absolute;
+     left:50%;
+     top:75%;
+     transform: translate(-50%, -50%);
+ }
+ div.disconnect
+ {
+     display:flex;
+     position:absolute;
+     float:left;
+     margin-left:100px;
+     top:6%;
+     transform: translate(-50%, -50%);
+ }
+ p{
+     font-size: larger;
+     padding: 15px;
+ }
+ div {
+     width:50%;
+     height:fit-content;
+     padding:10px;
+ }
+ .container
+ {
+     display:flex;
+     flex-direction: column;
+     position:absolute;
+     left:50%;
+     top:30%;
+     transform: translate(-25%, -25%);
+ }
+ .link
+ {
+     display:flex;
+     transform: translate(15%);
+ }
+.info
+{
+    position:absolute;
+    top:55%;
+    left:50%;
+    transform: translateX(-50%);
+}
+.info a, .info p
+{
+    margin:10px;
+}
+ .error {
+     color:red;
+
  }

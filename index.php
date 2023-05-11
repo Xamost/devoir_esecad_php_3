@@ -15,12 +15,13 @@
     </header>
     <form action="./script/login.php" method="post">
         <label>
-            <input class="text_input" type="text" name="username" placeholder="Username" required/>
+            <input class="text_input" type="text" name="username" placeholder="Username" required="required"/>
         </label>
         <label>
-            <input class="text_input" type="password" name="password" placeholder="Password" required/>
+            <input class="text_input" type="password" name="password" placeholder="Password" required="required"/>
         </label>
         <input class="button" type="submit" value="Connection"/>
+        <p class="error"><?php if(!empty($_GET)) echo 'ERREUR : ' . $_GET['message']; ?></p>
     </form>
 </body>
 </html>

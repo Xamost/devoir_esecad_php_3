@@ -11,7 +11,8 @@
     $row = $result->fetch_array();
     if (empty($row))
     {
-        redirect('../page/recherche.php');
+        $error = "Votre recherche n'a rien donné veuillez verifier votre orthographe.";
+        redirect('../page/recherche.php?message=' . $error);
     }
     if($mysqli->query('INSERT INTO search (user_id, ville_id) VALUES ('. $_SESSION['user']['id'] .','. $row['id'] .')') === TRUE)
     {

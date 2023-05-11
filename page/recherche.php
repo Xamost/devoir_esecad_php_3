@@ -1,7 +1,6 @@
 <?php
     session_start();
     include ('../script/functions.php');
-    print_r($_SESSION['user']['id']);
     $mysqli = mysql_connection();
     $result = $mysqli->query('SELECT ville_id FROM search WHERE user_id = "'. $_SESSION['user']['id'] . '"');
     while ($data = $result->fetch_row()) $row[] = $data[0];
@@ -18,7 +17,6 @@
     <title>Recherche ville</title>
     <link rel="stylesheet" href="../css/normalize.css"/>
     <link rel="stylesheet" href="../css/master.css"/>
-    <link rel="stylesheet" href="../css/recherche.css"/>
 </head>
 <body>
     <header>
@@ -31,6 +29,10 @@
             </label>
             <input class="button" type="submit" value="Recherche"/>
         </form>
+        <div class="info">
+            <p class="error"><?php if(!empty($_GET)) echo 'ERREUR : ' . $_GET['message'];?></p>
+            <a class="button" href="../script/logout.php">Déconnection</a>
+        </div>
         <div class="historique">
             <?php
                 if(!empty($row))
@@ -48,6 +50,9 @@
                     }
                 }
             ?>
+        </div>
+        <div class="disconnect">
+            <a class="button" href="../script/logout.php">Déconnection</a>
         </div>
     </div>
 </body>
