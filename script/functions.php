@@ -40,3 +40,5 @@
 
         return new mysqli($HOSTNAME, $USERNAME, $PASSWORD, $DATABASE);
     }
+
+    # Je devrais me faire un script de déconnection pour protéger la base de donnée mais pour les besoins de ce site ce n'est pas obligatoire
