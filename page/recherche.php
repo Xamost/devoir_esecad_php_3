@@ -1,10 +1,36 @@
 <?php
-    session_start();
-    include ('../script/functions.php');
-    $mysqli = mysql_connection();
-    $result = $mysqli->query('SELECT ville_id FROM search WHERE user_id = "'. $_SESSION['user']['id'] . '"');
-    while ($data = $result->fetch_row()) $row[] = $data[0];
 
+/*
+ *
+ * Ce fichier fait partie du devoir de php 3
+ *
+ * auteur : Thomas Loudoux
+ * nom de fichier : recherche.php
+ * description :
+ *  Ce fichier contient la page de recherche, et la logique d'affichage de l'historique utilisateur.
+ *
+ */
+
+    # On importe la minilib
+    include ('../script/functions.php');
+
+    # On démare la session utilisateur
+    session_start();
+
+    # Si il n'y as pas de SESSION utilisateur on renvoit l'utilisateur a l'index
+    if(!isset($_SESSION['user']))
+    {
+        redirect('../index.php');
+    }
+
+    # On instencie la connection
+    $mysqli = mysql_connection();
+
+    # On instencie notre requète pour recupérer l'historique de l'utilisateur stocker dans la session. Faire un INNER JOIN est innutile puisque ça nous fait une requete plus lourde pour le serveur sql si l'utilisateur n'a pas d'historique
+    $req = $mysqli->query('SELECT ville_id FROM search WHERE user_id = "'. $_SESSION['user'][0] . '"');
+
+    # On récupère tous l'historique dans la variable #row qui est une arraylist
+    while ($data = $req->fetch_row()) $row[] = $data[0];
 ?>
 
 <!doctype html>
@@ -30,22 +56,26 @@
             <input class="button" type="submit" value="Recherche"/>
         </form>
         <div class="info">
-            <p class="error"><?php if(!empty($_GET)) echo 'ERREUR : ' . $_GET['message'];?></p>
+            <p class="error"><?php if(!empty($_GET)) echo 'ERREUR : ' . $_GET['message']; #Petit script d'affichage d'erreur pour l'utilisateur?></p>
             <a class="button" href="../script/logout.php">Déconnection</a>
         </div>
         <div class="historique">
             <?php
-                if(!empty($row))
+                if(!empty($row)) # SI l'utilisateur à déjà fait des recherche enregister dans la base :
                 {
-                    foreach ($row as $key => $value)
+                    foreach ($row as $key => $value) # on parcours son historique
                     {
-                        $city_result = $mysqli->query('SELECT name FROM city WHERE id = "'. $value . '"');
-                        $city_row = $city_result->fetch_array();
-                        $city[] = $city_row['name'];
+                        # On instencie la requete pour récupérer le nom des ville recherché.
+                        $city_req = $mysqli->query('SELECT city_name FROM city WHERE city_id = "'. $value . '"');
+                        # On transpose la reponse sous une forme utilisable
+                        $city_row = $city_req->fetch_array();
+                        // On ajoute cette ville à la fin d'une liste
+                        $city[] = $city_row['city_name'];
                     }
-                    $city = array_unique($city);
-                    foreach ($city as $key => $value)
+                    $city = array_unique($city); #On supprime les doublon
+                    foreach ($city as $key => $value) # On parcours la liste des nom de ville
                     {
+                        # on génère notre lien accéder à la page déjà visité
                         echo "<a class='button' href='./ville.php?city=". $value . "' >" . $value ."</a>";
                     }
                 }

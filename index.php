@@ -21,7 +21,7 @@
             <input class="text_input" type="password" name="password" placeholder="Password" required="required"/>
         </label>
         <input class="button" type="submit" value="Connection"/>
-        <p class="error"><?php if(!empty($_GET)) echo 'ERREUR : ' . $_GET['message']; ?></p>
+        <p class="error"><?php if(!empty($_GET)) echo 'ERREUR : ' . $_GET['message']; #Petit script d'affichage d'erreur pour l'utilisateur?></p>
     </form>
 </body>
 </html>

@@ -1,14 +1,47 @@
 <?php
+/*
+ *
+ * Ce fichier fait partie du devoir de php 3
+ *
+ * auteur : Thomas Loudoux
+ * nom de fichier : ville.php
+ * description :
+ *  Ce fichier contient la page de la ville recherché par l'utilisateur.
+ *
+ */
+    #On importe la minilib
     include ('../script/functions.php');
-    if (empty($_GET))
+    if (empty($_GET)) # Si l'utilisater à rentré l'url de la page sans paramètre
     {
         redirect('../page/recherche.php');
     }
+
+    # On récupère la session
     session_start();
+
+    # Si il n'y as pas de SESSION utilisateur on renvoit l'utilisateur a l'index
+    if(!isset($_SESSION['user']))
+    {
+        redirect('../index.php');
+    }
+
+    # On récupère le nom de la ville recherché
     $city_name = $_GET['city'];
+
+    # On établie la connection
     $mysqli = mysql_connection();
-    $req = $mysqli->query('SELECT * from city WHERE name = "' . $city_name . '"');
+
+    # on instencie la requete pour tous récupérer de la ville recherché
+    $req = $mysqli->query('SELECT * from city WHERE city_name = "' . $city_name . '"');
+
+    # On rend la réponse utilisable
     $row = $req->fetch_row();
+
+    # Si l'utilisateur à rentré l'URL avec un mauvais nom de ville on le redirige sur la page de recherche
+    if (empty($row))
+    {
+        redirect('../page/recherche.php');
+    }
 ?>
 
 <!doctype html>
