@@ -34,3 +34,9 @@
     - user_id *(int auto_increment, PRIMARY)*
     - user_name *(text)*
     - user_password *(text)*
+
+
+### Petites interrogation ! 
+j'ai énnormément chercher de documentation en ligne pour ajouter des variables d'environnement au devoir,
+pour que ce soir plus simple de parametrage pour vous,
+mais trouver un outils pour parser les ficher .env en php sont compliquer à trouver auriez vous des liens vers une documentation ?
