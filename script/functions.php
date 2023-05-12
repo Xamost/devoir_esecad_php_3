@@ -10,10 +10,6 @@
  *
  */
 
-use Dotenv\Dotenv;
-
-$dotenv = Dotenv::createImmutable(__DIR__);
-    $dotenv->safeLoad();
 /**
  * description :
  *  On utilise cette fonction pour rediriger et arrêter le flux de la page.
@@ -36,10 +32,10 @@ $dotenv = Dotenv::createImmutable(__DIR__);
     function mysql_connection(): mysqli
     {
 
-        $HOSTNAME = $_ENV['DB_HOSTNAME'];
-        $USERNAME = $_ENV['DB_USERNAME'];
-        $PASSWORD = $_ENV['DB_PASSWORD'];
-        $DATABASE = $_ENV['DB_DATABASE'];
+        $HOSTNAME = 'localhost';
+        $USERNAME = 'root';
+        $PASSWORD = '';
+        $DATABASE = 'php_intermediaire_1';
 
         return new mysqli($HOSTNAME, $USERNAME, $PASSWORD, $DATABASE);
     }
