@@ -7,7 +7,6 @@
  *
  * description :
  *  Mini librairie de fonction
- *
  */
 
 /**
@@ -28,6 +27,8 @@
  *  On utilise cette fonction Pour ce connecter à la base de donnée
  * @author Thomas LOUDOUX <thomas.loudoux@gmail.com>
  * @return mysqli
+ * note :
+ *  Je devrais faire des verification si la connection avec la base de donnée est stable ou non.
  */
     function mysql_connection(): mysqli
     {
